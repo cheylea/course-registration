@@ -4,10 +4,6 @@
 ## Directory
 *need to add something here*
 
-## Database Setup
-Provided database is a MySQL database and can be installed using a tool such as MySQL Workbench.
-
-
 
 ## Installation
 Use the package manager [npm](https://www.npmjs.com//) to install the dependencies.
@@ -17,6 +13,11 @@ npm install package.json
 
 ## Using the Server
 *fill in*
+
+## Database Setup
+Provided database is a MySQL database and can be installed using a tool such as MySQL Workbench.
+
+Once the database is installed, open the scripts in the folder `database_scripts\create_stored_procedures` within the DBMS and run each one once. When the schema is refreshed the stored procedures should appear on the database.
 
 ## Testing the Database
 There is a provided folder that can test the connection to the server and ensure you can receive data as well as test the individual stored procedures.
