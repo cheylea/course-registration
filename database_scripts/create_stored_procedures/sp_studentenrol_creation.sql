@@ -41,7 +41,7 @@ BEGIN
 				SELECT 'Student is already enrolled. Please contact support team for assistance.'
 				INTO result;
 			ELSE
-				# Update the course to Available
+				# Add student enrolment to database
 				INSERT INTO mydb.enrolments (CourseId, UserId)
 				VALUES (CourseId_Var, StudentId_Var);
 				
