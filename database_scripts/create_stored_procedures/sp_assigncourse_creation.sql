@@ -2,16 +2,17 @@
 DELIMITER //
 CREATE PROCEDURE SP_AssignCourse(
 	IN Provided_CourseName VARCHAR(45),
-    IN Provided_TeacherName VARCHAR(45),
     IN Provided_UserName  VARCHAR(45),
-    OUT result VARCHAR(200))
+    IN Provided_TeacherName VARCHAR(45))
+
 BEGIN
-	DECLARE UserId_Var INT; 
-    DECLARE CourseId_Var INT;
+	DECLARE CourseId_Var INT;
+    DECLARE UserId_Var INT;
     DECLARE TeacherId_Var INT;
     DECLARE RoleCheck_Admin_Var INT;
     DECLARE RoleCheck_Teacher_Var INT;
-    DECLARE ActivationCheck_Var INT;
+    DECLARE Assignment_Check_Var INT;
+    DECLARE Result INT;
 
 	# Get the UserId from the given name
 	SELECT UserId
@@ -33,18 +34,29 @@ BEGIN
 	INTO RoleCheck_Teacher_Var
 	FROM (SELECT * FROM mydb.users u WHERE UserId = TeacherId_Var) rolecheckteacher;
     
+    # Check if teacher already assigned
+    SELECT TeacherId
+    INTO Assignment_Check_Var
+    FROM (SELECT * FROM mydb.courses WHERE TeacherId = TeacherId_Var) assigncheck;
+    
 	IF RoleCheck_Admin_Var <> 1 
 		THEN
 			# Reject user from updating the course
-			SELECT 'User does not have the correct permissions to perform this action.'
-			INTO result;
+			SELECT 1
+			INTO Result;
         ELSE IF
-			RoleCheck_Teacher_Var <> 2
+			RoleCheck_Teacher_Var IS NULL OR RoleCheck_Teacher_Var <> 2
 		THEN
 			# Reject user from updating the course
-			SELECT 'Provided teacher is not valid, please use a real teacher.'
-			INTO result;
-		ELSE
+			SELECT 3
+			INTO Result;
+		ELSE IF
+			Assignment_Check_Var IS NOT NULL
+		THEN 
+			# Reject user from assigning, already assigned
+            SELECT 2
+            INTO Result;
+        ELSE
 			# Get the CourseId from the given name
 			SELECT CourseId
 			INTO CourseId_Var
@@ -56,10 +68,12 @@ BEGIN
 			WHERE courseid = CourseId_Var;
 			
 			# Return Success Message
-			SELECT 'Teacher assigned to course.'
-			INTO result;
+			SELECT 0
+			INTO Result;
 			END IF;
 	END IF;
+    END IF;
+    SELECT Result;
 END //
 
 DELIMITER ;

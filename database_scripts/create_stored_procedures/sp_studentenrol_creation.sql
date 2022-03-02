@@ -2,13 +2,13 @@
 DELIMITER //
 CREATE PROCEDURE SP_StudentEnrol(
 	IN Provided_CourseName VARCHAR(45),
-    IN Provided_StudentName  VARCHAR(45),
-    OUT result VARCHAR(200))
+    IN Provided_StudentName  VARCHAR(45))
 BEGIN
 	DECLARE StudentId_Var INT; 
     DECLARE CourseId_Var INT;
     DECLARE RoleCheck_Var INT;
     DECLARE EnrolmentCheck_Var INT;
+    DECLARE Result INT;
 
 	# Get the UserId from the given name
 	SELECT UserId
@@ -20,10 +20,10 @@ BEGIN
 	INTO RoleCheck_Var
 	FROM (SELECT * FROM mydb.users u WHERE UserId = StudentId_Var) rolecheck;
 
-	IF RoleCheck_Var <> 3 
+	IF RoleCheck_Var IS NULL OR RoleCheck_Var <> 3 
 		THEN
 			# Reject user from updating the course
-			SELECT 'Student name provided is not valid. Please provide a valid student name.'
+			SELECT 3
 			INTO result;
         ELSE
 			# Get the CourseId from the given name
@@ -38,18 +38,19 @@ BEGIN
 			WHERE UserId = StudentId_Var;
 			
 			IF EnrolmentCheck_Var IS NOT NULL THEN
-				SELECT 'Student is already enrolled. Please contact support team for assistance.'
+				SELECT 2
 				INTO result;
 			ELSE
-				# Add student enrolment to database
+				# Add enrolment to the table
 				INSERT INTO mydb.enrolments (CourseId, UserId)
 				VALUES (CourseId_Var, StudentId_Var);
 				
 				# Return Success Message
-				SELECT 'Student enrolled.'
+				SELECT 0
 				INTO result;
 			END IF;
 	END IF;
+    SELECT Result;
 END //
 
 DELIMITER ;

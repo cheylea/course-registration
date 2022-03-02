@@ -4,8 +4,7 @@ CREATE PROCEDURE SP_TeacherAddMarks(
 	IN Provided_CourseName VARCHAR(45),
     IN Provided_StudentName VARCHAR(45),
     IN Provided_UserName  VARCHAR(45),
-    IN Mark VARCHAR(4),
-    OUT result VARCHAR(200))
+    IN Mark VARCHAR(4))
 BEGIN
 	DECLARE UserId_Var INT; 
     DECLARE CourseId_Var INT;
@@ -13,6 +12,7 @@ BEGIN
     DECLARE RoleCheck_Teacher_Var INT;
     DECLARE RoleCheck_Student_Var INT;
     DECLARE EnrolmentCheck_Var INT;
+    DECLARE Result INT;
 
 	# Get the UserId from the given name
 	SELECT UserId
@@ -39,23 +39,30 @@ BEGIN
 	INTO EnrolmentCheck_Var
 	FROM (SELECT * FROM mydb.enrolments e WHERE UserId = StudentId_Var) enrolmentcheck;
     
-	IF RoleCheck_Teacher_Var <> 2 
+    
+	IF RoleCheck_Teacher_Var IS NULL OR RoleCheck_Teacher_Var <> 2 
 		THEN
 			# Reject user from updating the course
-			SELECT 'User does not have the correct permissions to perform this action.'
+			SELECT 1
 			INTO result;
         ELSE IF
-			RoleCheck_Student_Var <> 3
+			RoleCheck_Student_Var IS NULL OR RoleCheck_Student_Var <> 3
 		THEN
 			# Reject user from updating the course
-			SELECT 'Provided student is not valid, please use a valid student.'
+			SELECT 3
 			INTO result;
 		ELSE IF
 			EnrolmentCheck_Var IS NULL
 		THEN
-			# Unable to add mark to enrolment
-			SELECT 'Student does not have an enrolment for this course.'
+			# Enrolment does not exist
+			SELECT 4
 			INTO result;
+		ELSE IF
+			Mark <> 'Pass' AND Mark <> 'Fail'
+		THEN
+			# Invalid grade provided
+			SELECT 5
+			INTO Result;
 		ELSE IF
 			Mark = 'Pass'
 		THEN
@@ -65,8 +72,8 @@ BEGIN
 			WHERE UserId = StudentId_Var;
 			
 			# Return Success Message
-			SELECT 'Mark for updated to Pass.'
-			INTO result;
+			SELECT 0
+			INTO Result;
 		ELSE
 			# Update mark to fail
 			UPDATE mydb.enrolments
@@ -74,12 +81,14 @@ BEGIN
 			WHERE UserId = StudentId_Var;
 			
 			# Return Success Message
-			SELECT 'Mark updated to Fail.'
-			INTO result;
-			END IF;
+			SELECT 0
+			INTO Result;
+	END IF;
 	END IF;
     END IF;
+    END IF;
 	END IF;
+    SELECT Result;
 END //
 
 DELIMITER ;

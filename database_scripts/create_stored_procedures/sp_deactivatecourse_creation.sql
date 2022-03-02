@@ -2,13 +2,13 @@
 DELIMITER //
 CREATE PROCEDURE SP_DeactivateCourse(
 	IN Provided_CourseName VARCHAR(45),
-    IN Provided_UserName  VARCHAR(45),
-    OUT result VARCHAR(200))
+    IN Provided_UserName  VARCHAR(45))
 BEGIN
 	DECLARE UserId_Var INT; 
     DECLARE CourseId_Var INT;
     DECLARE RoleCheck_Var INT;
     DECLARE ActivationCheck_Var INT;
+    DECLARE Result INT;
 
 	# Get the UserId from the given name
 	SELECT UserId
@@ -23,8 +23,8 @@ BEGIN
 	IF RoleCheck_Var <> 1 
 		THEN
 			# Reject user from updating the course
-			SELECT 'User does not have the correct permissions to perform this action.'
-			INTO result;
+			SELECT 1
+			INTO Result;
         ELSE
 			# Get the CourseId from the given name
 			SELECT CourseId
@@ -38,8 +38,8 @@ BEGIN
 			WHERE courseid = CourseId_Var;
 			
 			IF ActivationCheck_Var = 0 THEN
-				SELECT 'Course already deactivated.'
-				INTO result;
+				SELECT 2
+				INTO Result;
 			ELSE
 				# Update the course to Available
 				UPDATE mydb.courses
@@ -47,10 +47,11 @@ BEGIN
 				WHERE courseid = CourseId_Var;
 				
 				# Return Success Message
-				SELECT 'Course deactivated.'
-				INTO result;
+				SELECT 0
+				INTO Result;
 			END IF;
 	END IF;
+    SELECT Result;
 END //
 
 DELIMITER ;
