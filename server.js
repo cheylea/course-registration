@@ -95,8 +95,8 @@ app.get('/availablecourses', function (request, response) {
     console.log(request)
     connection.query(`CALL SP_AvailableCourses();`, (error, result)=>{
         if (error) throw error;
-
-        response.end(JSON.stringify(result));
+        out = JSON.parse(JSON.stringify(result[0]))
+        response.send(out);
     });
 });
 
