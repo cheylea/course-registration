@@ -4,15 +4,15 @@
     "express": "^4.17.3",
     "mysql2": "^2.3.3"
   },
-  "name": "myapp",
+  "name": "course-registration",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "server.js",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Cheylea Hopkinson",
+  "license": "MIT",
   "description": ""
 }
