@@ -1,43 +1,30 @@
 # Make a Course Available
 DELIMITER //
 CREATE PROCEDURE SP_AssignCourse(
-	IN Provided_CourseName VARCHAR(45),
-    IN Provided_UserName  VARCHAR(45),
-    IN Provided_TeacherName VARCHAR(45))
+	IN Provided_CourseId INT,
+    IN Provided_UserId INT,
+    IN Provided_TeacherId INT)
 
 BEGIN
-	DECLARE CourseId_Var INT;
-    DECLARE UserId_Var INT;
-    DECLARE TeacherId_Var INT;
     DECLARE RoleCheck_Admin_Var INT;
     DECLARE RoleCheck_Teacher_Var INT;
     DECLARE Assignment_Check_Var INT;
     DECLARE Result INT;
-
-	# Get the UserId from the given name
-	SELECT UserId
-	INTO UserId_Var
-	FROM (SELECT * FROM mydb.users u WHERE Name = Provided_UserName) getuserid;
-    
-    # Get the Teacher Id from the given name
-	SELECT UserId
-	INTO TeacherId_Var
-	FROM (SELECT * FROM mydb.users u WHERE Name = Provided_TeacherName) getteacherid;
 	
 	# Check if the user is an admin user
 	SELECT RoleId
 	INTO RoleCheck_Admin_Var
-	FROM (SELECT * FROM mydb.users u WHERE UserId = UserId_Var) rolecheckadmin;
+	FROM (SELECT * FROM mydb.users u WHERE UserId = Provided_UserId) rolecheckadmin;
 
 	# Check if the teacher is a teacher user
 	SELECT RoleId
 	INTO RoleCheck_Teacher_Var
-	FROM (SELECT * FROM mydb.users u WHERE UserId = TeacherId_Var) rolecheckteacher;
+	FROM (SELECT * FROM mydb.users u WHERE UserId = Provided_TeacherId) rolecheckteacher;
     
     # Check if teacher already assigned
     SELECT TeacherId
     INTO Assignment_Check_Var
-    FROM (SELECT * FROM mydb.courses WHERE TeacherId = TeacherId_Var) assigncheck;
+    FROM (SELECT * FROM mydb.courses WHERE TeacherId = Provided_TeacherId AND CourseId = Provided_CourseId) assigncheck;
     
 	IF RoleCheck_Admin_Var <> 1 
 		THEN
@@ -57,15 +44,10 @@ BEGIN
             SELECT 2
             INTO Result;
         ELSE
-			# Get the CourseId from the given name
-			SELECT CourseId
-			INTO CourseId_Var
-			FROM (SELECT * FROM mydb.courses u WHERE Title = Provided_CourseName) getcourseid;
-
 			# Update the course to Available
 			UPDATE mydb.courses
-			SET TeacherId = TeacherId_Var
-			WHERE courseid = CourseId_Var;
+			SET TeacherId = Provided_TeacherId
+			WHERE courseid = Provided_CourseId;
 			
 			# Return Success Message
 			SELECT 0

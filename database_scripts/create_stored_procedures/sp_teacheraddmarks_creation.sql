@@ -1,9 +1,9 @@
 # Teachers add marks to pass or fail students
 DELIMITER //
 CREATE PROCEDURE SP_TeacherAddMarks(
-	IN Provided_CourseName VARCHAR(45),
-    IN Provided_StudentName VARCHAR(45),
-    IN Provided_UserName  VARCHAR(45),
+	IN Provided_CourseId INT,
+    IN Provided_StudentId INT,
+    IN Provided_UserId INT,
     IN Mark VARCHAR(4))
 BEGIN
 	DECLARE UserId_Var INT; 
@@ -13,31 +13,21 @@ BEGIN
     DECLARE RoleCheck_Student_Var INT;
     DECLARE EnrolmentCheck_Var INT;
     DECLARE Result INT;
-
-	# Get the UserId from the given name
-	SELECT UserId
-	INTO UserId_Var
-	FROM (SELECT * FROM mydb.users u WHERE Name = Provided_UserName) getuserid;
-    
-    # Get the Student Id from the given name
-	SELECT UserId
-	INTO StudentId_Var
-	FROM (SELECT * FROM mydb.users u WHERE Name = Provided_StudentName) getstudentid;
     
     # Check if the user is a teacher
 	SELECT RoleId
 	INTO RoleCheck_Teacher_Var
-	FROM (SELECT * FROM mydb.users u WHERE UserId = UserId_Var) rolecheckteacher;
+	FROM (SELECT * FROM mydb.users u WHERE UserId = Provided_UserId) rolecheckteacher;
 	
 	# Check if the student is a student
 	SELECT RoleId
 	INTO RoleCheck_Student_Var
-	FROM (SELECT * FROM mydb.users u WHERE UserId = StudentId_Var) rolecheckstudent;
+	FROM (SELECT * FROM mydb.users u WHERE UserId = Provided_StudentId) rolecheckstudent;
     
     # Check enrolment exists for student
 	SELECT EnrolmentId
 	INTO EnrolmentCheck_Var
-	FROM (SELECT * FROM mydb.enrolments e WHERE UserId = StudentId_Var) enrolmentcheck;
+	FROM (SELECT * FROM mydb.enrolments e WHERE UserId = Provided_StudentId AND CourseId = Provided_CourseId) enrolmentcheck;
     
     
 	IF RoleCheck_Teacher_Var IS NULL OR RoleCheck_Teacher_Var <> 2 
