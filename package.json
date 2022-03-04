@@ -1,8 +1,7 @@
 {
   "dependencies": {
-    "docenv": "^2.0.6",
+    "dotenv": "^2.0.6",
     "express": "^4.17.3",
-    "mssql": "^8.0.2",
     "mysql2": "^2.3.3"
   },
   "name": "myapp",
