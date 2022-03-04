@@ -10,13 +10,19 @@ The functionality is as follows:
 * Add the marks to the course enrolment record (teacher only)
 
 ## Directory
+The below directory shows some of the main files references in this README.
 ```bash
 C:.
 ├───database_scripts
 │   └───create_stored_procedures
 ├───test
+│   └───testingqueries.sql
 │   └───test_connection
+│ 		└───app.js
+├───postman
+│   └───course-registration.postman_collection.json
 └───server.js
+└───package.json
 ```
 
 ## Installation
@@ -49,9 +55,9 @@ Server is listening at http://localhost:5000/
 ```
 
 ### API
-A tool such as Postman can be used to send calls to the server:
+A tool such as Postman can be used to send calls to the server.
 
-![](https://imgur.com/a/5osKPr6 "Postman Example")
+Included in this repository in the `postman` folder is a json file `course-registration.postman_collection.json` that can be into the Postman application to use with this server.
 
 ## Database Setup
 Provided database is a MySQL database and can be installed using a tool such as MySQL Workbench.

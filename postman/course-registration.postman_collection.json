@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "b2324a03-01c1-49c4-a1ef-34fd548c844e",
+		"name": "course-registration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/activatecourse/:namecourse/:nameuser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/activatecourse/:idcourse/:iduser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"activatecourse",
+						":idcourse",
+						":iduser"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "4",
+							"description": "Network security"
+						},
+						{
+							"key": "iduser",
+							"value": "1",
+							"description": "Clark Taylor"
+						}
+					]
+				},
+				"description": "Activate Course request"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/assigncourse/:namecourse/:nameuser/:nameteacher",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/assigncourse/:idcourse/:iduser/:idteacher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"assigncourse",
+						":idcourse",
+						":iduser",
+						":idteacher"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "3",
+							"description": "Machine Learning"
+						},
+						{
+							"key": "iduser",
+							"value": "1",
+							"description": "Clark Taylor"
+						},
+						{
+							"key": "idteacher",
+							"value": "5",
+							"description": "Catherine Nelson"
+						}
+					]
+				},
+				"description": "Assign Course request"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/availablecourses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/availablecourses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"availablecourses"
+					]
+				},
+				"description": "Get list of available courses"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/deactivatecourse/:namecourse/:nameuser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/deactivatecourse/:idcourse/:iduser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"deactivatecourse",
+						":idcourse",
+						":iduser"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "8",
+							"description": "Computer Algorithms"
+						},
+						{
+							"key": "iduser",
+							"value": "1",
+							"description": "Clark Taylor"
+						}
+					]
+				},
+				"description": "Deactivate Course request"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ping"
+					]
+				},
+				"description": "Get the status of the server"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/studentenrol/:namecourse/:namestudent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/studentenrol/:idcourse/:idstudent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"studentenrol",
+						":idcourse",
+						":idstudent"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "2",
+							"description": "Databases"
+						},
+						{
+							"key": "idstudent",
+							"value": "29",
+							"description": "Miley Cunningham"
+						}
+					]
+				},
+				"description": "Student Enrolment request"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/teacheraddmarks/:namecourse/:namestudent/:nameuser/:mark",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/teacheraddmarks/:idcourse/:idstudent/:iduser/:mark",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"teacheraddmarks",
+						":idcourse",
+						":idstudent",
+						":iduser",
+						":mark"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "2",
+							"description": "Databases"
+						},
+						{
+							"key": "idstudent",
+							"value": "30",
+							"description": "Julia Scott"
+						},
+						{
+							"key": "iduser",
+							"value": "5",
+							"description": "Catherine Nelson"
+						},
+						{
+							"key": "mark",
+							"value": "Pass",
+							"description": "Can only be Pass or Fail"
+						}
+					]
+				},
+				"description": "Add marks to student enrolments request"
+			},
+			"response": []
+		}
+	]
+}
