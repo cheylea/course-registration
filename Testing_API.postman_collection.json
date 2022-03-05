@@ -1,0 +1,649 @@
+{
+	"info": {
+		"_postman_id": "6b54dbc1-4471-42ab-bdd0-0ad7079fdb2f",
+		"name": "Testing API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Already Activated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/activatecourse/:idcourse/:iduser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"activatecourse",
+						":idcourse",
+						":iduser"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "8"
+						},
+						{
+							"key": "iduser",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate Course - Denied Permission",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/activatecourse/:idcourse/:iduser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"activatecourse",
+						":idcourse",
+						":iduser"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "7"
+						},
+						{
+							"key": "iduser",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate Course - Denied Permission",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/deactivatecourse/:idcourse/:iduser/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"deactivatecourse",
+						":idcourse",
+						":iduser",
+						""
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "8"
+						},
+						{
+							"key": "iduser",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate - Course Deactivated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/deactivatecourse/:idcourse/:iduser/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"deactivatecourse",
+						":idcourse",
+						":iduser",
+						""
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "11"
+						},
+						{
+							"key": "iduser",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate - Already Deactivated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/deactivatecourse/:idcourse/:iduser/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"deactivatecourse",
+						":idcourse",
+						":iduser",
+						""
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "9"
+						},
+						{
+							"key": "iduser",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate Course - Course Activated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/activatecourse/:idcourse/:iduser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"activatecourse",
+						":idcourse",
+						":iduser"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "7"
+						},
+						{
+							"key": "iduser",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign Course - Denied Permission",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/assigncourse/:idcourse/:iduser/:idteacher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"assigncourse",
+						":idcourse",
+						":iduser",
+						":idteacher"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "8"
+						},
+						{
+							"key": "iduser",
+							"value": "4"
+						},
+						{
+							"key": "idteacher",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign Course - Invalid Teacher",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/assigncourse/:idcourse/:iduser/:idteacher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"assigncourse",
+						":idcourse",
+						":iduser",
+						":idteacher"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "1"
+						},
+						{
+							"key": "iduser",
+							"value": "2"
+						},
+						{
+							"key": "idteacher",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign Course - Teacher Assigned",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/assigncourse/:idcourse/:iduser/:idteacher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"assigncourse",
+						":idcourse",
+						":iduser",
+						":idteacher"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "1"
+						},
+						{
+							"key": "iduser",
+							"value": "2"
+						},
+						{
+							"key": "idteacher",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign Course - Already Assigned",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/assigncourse/:idcourse/:iduser/:idteacher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"assigncourse",
+						":idcourse",
+						":iduser",
+						":idteacher"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "1"
+						},
+						{
+							"key": "iduser",
+							"value": "2"
+						},
+						{
+							"key": "idteacher",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Available Course",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5050/availablecourses"
+			},
+			"response": []
+		},
+		{
+			"name": "Student Enrollment - Invalid Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/studentenrol/:idcourse/:idstudent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"studentenrol",
+						":idcourse",
+						":idstudent"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "2"
+						},
+						{
+							"key": "idstudent",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student Enrollment - Already Enrolled",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/studentenrol/:idcourse/:idstudent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"studentenrol",
+						":idcourse",
+						":idstudent"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "2"
+						},
+						{
+							"key": "idstudent",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student Enrollment -",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/studentenrol/:idcourse/:idstudent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"studentenrol",
+						":idcourse",
+						":idstudent"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "1"
+						},
+						{
+							"key": "idstudent",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teacher Marks - Missing Data",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/teacheraddmarks/:idcourse/:idstudent/:iduser/:mark",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"teacheraddmarks",
+						":idcourse",
+						":idstudent",
+						":iduser",
+						":mark"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "1"
+						},
+						{
+							"key": "idstudent",
+							"value": "13"
+						},
+						{
+							"key": "iduser",
+							"value": "3"
+						},
+						{
+							"key": "mark",
+							"value": "Pass"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teacher Marks - Mark Updated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/teacheraddmarks/:idcourse/:idstudent/:iduser/:mark",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"teacheraddmarks",
+						":idcourse",
+						":idstudent",
+						":iduser",
+						":mark"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "2"
+						},
+						{
+							"key": "idstudent",
+							"value": "10"
+						},
+						{
+							"key": "iduser",
+							"value": "3"
+						},
+						{
+							"key": "mark",
+							"value": "Fail"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tearcher Marks - Invalid Parameter",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/teacheraddmarks/:idcourse/:idstudent/:iduser/:mark",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"teacheraddmarks",
+						":idcourse",
+						":idstudent",
+						":iduser",
+						":mark"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "2"
+						},
+						{
+							"key": "idstudent",
+							"value": "2"
+						},
+						{
+							"key": "iduser",
+							"value": "3"
+						},
+						{
+							"key": "mark",
+							"value": "Pass"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teacher Marks - Denied Permission",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/teacheraddmarks/:idcourse/:idstudent/:iduser/:mark",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"teacheraddmarks",
+						":idcourse",
+						":idstudent",
+						":iduser",
+						":mark"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "1"
+						},
+						{
+							"key": "idstudent",
+							"value": "12"
+						},
+						{
+							"key": "iduser",
+							"value": "10"
+						},
+						{
+							"key": "mark",
+							"value": "Pass"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teacher Marks - Validation Error",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/teacheraddmarks/:idcourse/:idstudent/:iduser/:mark",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"teacheraddmarks",
+						":idcourse",
+						":idstudent",
+						":iduser",
+						":mark"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "1"
+						},
+						{
+							"key": "idstudent",
+							"value": "12"
+						},
+						{
+							"key": "iduser",
+							"value": "4"
+						},
+						{
+							"key": "mark",
+							"value": "Pa"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
