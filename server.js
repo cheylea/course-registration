@@ -66,8 +66,10 @@ app.put('/activatecourse/:idcourse/:iduser', function (request, response) {
             message = "Denied: User does not have the correct permissions to perform this action.";
         } else if (out === 2) {
             message = "Duplicate Action: Course already activated.";
+        } else if (out === 4) {
+            message = "Missing Data: Course provided does not exist.";
         } else {
-            message = "Unknown Error";
+            message = "Unknown error.";
         };
         // Send the message to the user
         response.send(message)
@@ -97,8 +99,10 @@ app.put('/deactivatecourse/:idcourse/:iduser', function (request, response) {
             message = "Denied Permission: User does not have the correct permissions to perform this action.";
         } else if (out === 2) {
             message = "Duplicate Action: Course already deactivated.";
+        } else if (out === 4) {
+            message = "Missing Data: Course provided does not exist.";
         } else {
-            message = "Unknown Error";
+            message = "Unknown error.";
         };
         // Send the message to the user
         response.send(message)
@@ -133,7 +137,7 @@ app.put('/assigncourse/:idcourse/:iduser/:idteacher', function (request, respons
         } else if (out === 3) {
             message = "Invalid Parameter: Provided teacher is not valid, please use a real teacher.";
         } else {
-            message = "Unknown Error";
+            message = "Unknown error.";
         };
         // Send the message to the user
         response.send(message)
@@ -184,7 +188,7 @@ app.post('/studentenrol/:idcourse/:idstudent', function (request, response) {
         } else if (out === 3) {
             message = "Invalid Parameter: Student provided is not valid. Please provide a valid student.";
         } else {
-            message = "Unknown Error";
+            message = "Unknown error.";
         };
         // Send the message to the user
         response.send(message)
@@ -218,9 +222,9 @@ app.put('/teacheraddmarks/:idcourse/:idstudent/:iduser/:mark', function (request
         } else if (out === 4) {
             message = "Missing Data: Student does not have an enrolment for this course.";
         } else if (out === 5) {
-            message = "Data Validation: Please only provide a mark of Pass or Fail";
+            message = "Data Validation: Please only provide a mark of Pass or Fail.";
         } else {
-            message = "Unknown Error";
+            message = "Unknown error.";
         };
         // Send the message to the user
         response.send(message)
