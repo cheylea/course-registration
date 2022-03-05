@@ -11,17 +11,22 @@ The functionality is as follows:
 
 ## Directory
 The below directory shows some of the main files references in this README.
-```bash
+```
 C:.
 ├───database_scripts
 │   └───create_stored_procedures
 ├───test
-│   └───testingqueries.sql
-│   └───test_connection
-│ 		└───app.js
+│   ├───postman
+│   │   ├───basic_requests.postman-collection.json
+│   │   ├───data_reset_for_testing.sql
+│   │   └───full_testing.postman-collection.json
+│   └───testing_database
+│       ├───app.js
+│   	└───testingqueries.sql
 ├───postman
-│   └───course-registration.postman_collection.json
-└───server.js
+│   ├───course-registration.postman_collection.json
+│   └───Testing_API.postman_collection.json
+├───server.js
 └───package.json
 ```
 
@@ -36,7 +41,7 @@ npm install package.json
 Create a .env file in the same place as the `server.js` file and use the below template to replace with login details for your database server. The port and host provided will be the port you want to run the server on.
 
 ```bash
-PORT=5000
+PORT=5050
 USER=exampleuser
 PASSWORD=examplepassword
 DATABASE=mydb
@@ -51,13 +56,15 @@ node server.js
 ```
 The result should give the following depending on the host and the port provided in the .env file.
 ```bash
-Server is listening at http://localhost:5000/
+Server is listening at http://localhost:5050/
 ```
 
 ### API
 A tool such as Postman can be used to send calls to the server.
 
-Included in this repository in the `postman` folder is a json file `course-registration.postman_collection.json` that can be into the Postman application to use with this server.
+Included in this repository in the `test/postman` folder is a json file `basic_requests.postman-collection.json` that can be imported into the Postman application to use with this server to check each API is working.
+
+For full testing, within the folder there is also a json file `full_testing.postman-collection.json`. See Testing the Server section for more information.
 
 ## Database Setup
 Provided database is a MySQL database and can be installed using a tool such as MySQL Workbench.
@@ -96,6 +103,23 @@ DATABASE=mydb
 MYDB_PORT=3306
 HOST=localhost
 ```
+
+## Testing the Server
+
+### Preparation
+Before beginning testing, please ensure the following:
+
+* Check your MySQL server is running
+* There is a `data_reset_for_testing.sql` found in the `test/postman`. Run this file on the database before beginning.
+* Ensure `full_testing.postman-collection.json` has been imported into the POSTMAN application.
+* You have created a .env file as instructed previously, and `PORT` is set to `5050`
+* Run the `server.js` file to open the server.
+
+### Testing
+Once the server is running the first method to call should be the /ping in order to check the server is running.
+
+Once this has passed, each test can be run from top to bottom to check the expected message is returned.
+
 
 ## Contributing
 Pull requests permitted. When contributing please update the test directory as appropriate with any additional requirements. 

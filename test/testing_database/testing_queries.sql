@@ -18,11 +18,12 @@ WHERE CourseId = 2; #Databases
 CALL SP_ActivateCourse(2,30); # (Databases, Julia Scott) | Expected: 1
 CALL SP_ActivateCourse(2,1); # (Databases, Clark Taylor) | Expected: 0
 CALL SP_ActivateCourse(2,1); # (Databases, Clark Taylor) | Expected: 2
+CALL SP_ActivateCourse(11,1); # (*Not exist*, Clark Taylor) | Expected: 4
 # Deactivate a Course
 CALL SP_DeactivateCourse(2,30); # (Databases, Julia Scott) | Expected: 1
 CALL SP_DeactivateCourse(2,1); # (Databases, Clark Taylor) | Expected: 0
 CALL SP_DeactivateCourse(2,1); # (Databases, Clark Taylor) | Expected: 2
-
+CALL SP_DeactivateCourse(11,1); # (*Not exist*, Clark Taylor) | Expected: 4
 
 # Assignment Tests
 # Complete the following statements one by one in order to test
