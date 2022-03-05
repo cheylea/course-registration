@@ -1,12 +1,32 @@
 {
 	"info": {
-		"_postman_id": "6b54dbc1-4471-42ab-bdd0-0ad7079fdb2f",
+		"_postman_id": "a45b2a6a-7b85-4e09-954b-9e5830a977cd",
 		"name": "Testing API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Already Activated",
+			"name": "Server Status Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"ping"
+					]
+				},
+				"description": "Get the status of the server"
+			},
+			"response": []
+		},
+		{
+			"name": "Activate Course - Course Activated",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -25,11 +45,79 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "8"
+							"value": "7",
+							"description": "Game Development"
 						},
 						{
 							"key": "iduser",
-							"value": "2"
+							"value": "1",
+							"description": "Clark Taylor (Admin)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate Course - Already Activated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/activatecourse/:idcourse/:iduser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"activatecourse",
+						":idcourse",
+						":iduser"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "8",
+							"description": "Computer algorithms"
+						},
+						{
+							"key": "iduser",
+							"value": "2",
+							"description": "Natalie Armstrong (Admin)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate Course - Course Does Not Exist",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/activatecourse/:idcourse/:iduser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"activatecourse",
+						":idcourse",
+						":iduser"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "11",
+							"description": "Course doesn't exist in the database"
+						},
+						{
+							"key": "iduser",
+							"value": "1",
+							"description": "Clark Taylor (Admin)"
 						}
 					]
 				}
@@ -56,11 +144,81 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "7"
+							"value": "7",
+							"description": "Game Development"
 						},
 						{
 							"key": "iduser",
-							"value": "7"
+							"value": "7",
+							"description": "Dainton Henderson (Teacher)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate Course - Course Deactivated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/deactivatecourse/:idcourse/:iduser/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"deactivatecourse",
+						":idcourse",
+						":iduser",
+						""
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "7",
+							"description": "Game Development"
+						},
+						{
+							"key": "iduser",
+							"value": "1",
+							"description": "Clark Taylor (Admin)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate Course - Already Deactivated",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/deactivatecourse/:idcourse/:iduser/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"deactivatecourse",
+						":idcourse",
+						":iduser",
+						""
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "7",
+							"description": "Game Development"
+						},
+						{
+							"key": "iduser",
+							"value": "2",
+							"description": "Natalie Armstrong (Admin)"
 						}
 					]
 				}
@@ -88,11 +246,13 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "8"
+							"value": "8",
+							"description": "Computer algorithms"
 						},
 						{
 							"key": "iduser",
-							"value": "3"
+							"value": "3",
+							"description": "Max Barrett (Teacher)"
 						}
 					]
 				}
@@ -100,7 +260,7 @@
 			"response": []
 		},
 		{
-			"name": "Deactivate - Course Deactivated",
+			"name": "Deactivate Course - Course Does Not Exist",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -120,74 +280,13 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "11"
+							"value": "11",
+							"description": "Course doesn't exist in the database"
 						},
 						{
 							"key": "iduser",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Deactivate - Already Deactivated",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5050/deactivatecourse/:idcourse/:iduser/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5050",
-					"path": [
-						"deactivatecourse",
-						":idcourse",
-						":iduser",
-						""
-					],
-					"variable": [
-						{
-							"key": "idcourse",
-							"value": "9"
-						},
-						{
-							"key": "iduser",
-							"value": "2"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Activate Course - Course Activated",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5050/activatecourse/:idcourse/:iduser",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5050",
-					"path": [
-						"activatecourse",
-						":idcourse",
-						":iduser"
-					],
-					"variable": [
-						{
-							"key": "idcourse",
-							"value": "7"
-						},
-						{
-							"key": "iduser",
-							"value": "1"
+							"value": "1",
+							"description": "Clark Taylor (Admin)"
 						}
 					]
 				}
@@ -215,15 +314,18 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "8"
+							"value": "8",
+							"description": "Computer algorithms"
 						},
 						{
 							"key": "iduser",
-							"value": "4"
+							"value": "4",
+							"description": "Alisa Barnes (Teacher)"
 						},
 						{
 							"key": "idteacher",
-							"value": "3"
+							"value": "3",
+							"description": "Max Barrett (Teacher)"
 						}
 					]
 				}
@@ -251,15 +353,18 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "1"
+							"value": "1",
+							"description": "Data structures"
 						},
 						{
 							"key": "iduser",
-							"value": "2"
+							"value": "2",
+							"description": "Natalie Armstrong (Admin)"
 						},
 						{
 							"key": "idteacher",
-							"value": "10"
+							"value": "10",
+							"description": "Nicholas Ross (Student)"
 						}
 					]
 				}
@@ -287,15 +392,18 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "1"
+							"value": "1",
+							"description": "Data structures"
 						},
 						{
 							"key": "iduser",
-							"value": "2"
+							"value": "2",
+							"description": "Natalie Armstrong (Admin)"
 						},
 						{
 							"key": "idteacher",
-							"value": "4"
+							"value": "4",
+							"description": "Alisa Barnes (Teacher)"
 						}
 					]
 				}
@@ -323,15 +431,18 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "1"
+							"value": "1",
+							"description": "Data structures"
 						},
 						{
 							"key": "iduser",
-							"value": "2"
+							"value": "2",
+							"description": "Natalie Armstrong (Admin)"
 						},
 						{
 							"key": "idteacher",
-							"value": "4"
+							"value": "4",
+							"description": "Alisa Barnes (Teacher)"
 						}
 					]
 				}
@@ -343,7 +454,17 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:5050/availablecourses"
+				"url": {
+					"raw": "http://localhost:5050/availablecourses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"availablecourses"
+					]
+				}
 			},
 			"response": []
 		},
@@ -367,11 +488,46 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "2"
+							"value": "2",
+							"description": "Databases"
 						},
 						{
 							"key": "idstudent",
-							"value": "6"
+							"value": "6",
+							"description": "Ted Casey (Teacher)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student Enrollment - Student Enrolled",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/studentenrol/:idcourse/:idstudent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"studentenrol",
+						":idcourse",
+						":idstudent"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "2",
+							"description": "Databases"
+						},
+						{
+							"key": "idstudent",
+							"value": "10",
+							"description": "Nicholas Ross (Student)"
 						}
 					]
 				}
@@ -398,42 +554,13 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "2"
+							"value": "2",
+							"description": "Databases"
 						},
 						{
 							"key": "idstudent",
-							"value": "10"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Student Enrollment -",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5050/studentenrol/:idcourse/:idstudent",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5050",
-					"path": [
-						"studentenrol",
-						":idcourse",
-						":idstudent"
-					],
-					"variable": [
-						{
-							"key": "idcourse",
-							"value": "1"
-						},
-						{
-							"key": "idstudent",
-							"value": "12"
+							"value": "10",
+							"description": "Nicholas Ross (Student)"
 						}
 					]
 				}
@@ -462,19 +589,23 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "1"
+							"value": "1",
+							"description": "Data structures"
 						},
 						{
 							"key": "idstudent",
-							"value": "13"
+							"value": "13",
+							"description": "Kate Wilson (Student)"
 						},
 						{
 							"key": "iduser",
-							"value": "3"
+							"value": "3",
+							"description": "Max Barrett (Teacher)"
 						},
 						{
 							"key": "mark",
-							"value": "Pass"
+							"value": "Pass",
+							"description": "Pass (Can only be Pass or Fail)"
 						}
 					]
 				}
@@ -503,19 +634,23 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "2"
+							"value": "2",
+							"description": "Databases"
 						},
 						{
 							"key": "idstudent",
-							"value": "10"
+							"value": "10",
+							"description": "Nicholas Ross (Student)"
 						},
 						{
 							"key": "iduser",
-							"value": "3"
+							"value": "3",
+							"description": "Max Barrett (Teacher)"
 						},
 						{
 							"key": "mark",
-							"value": "Fail"
+							"value": "Fail",
+							"description": "Fail (Can only be Pass or Fail)"
 						}
 					]
 				}
@@ -544,19 +679,23 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "2"
+							"value": "2",
+							"description": "Databases"
 						},
 						{
 							"key": "idstudent",
-							"value": "2"
+							"value": "2",
+							"description": "Natalie Armstrong (Admin)"
 						},
 						{
 							"key": "iduser",
-							"value": "3"
+							"value": "3",
+							"description": "Max Barrett (Teacher)"
 						},
 						{
 							"key": "mark",
-							"value": "Pass"
+							"value": "Pass",
+							"description": "Pass (Can only be Pass or Fail)"
 						}
 					]
 				}
@@ -585,19 +724,23 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "1"
+							"value": "1",
+							"description": "Data structures"
 						},
 						{
 							"key": "idstudent",
-							"value": "12"
+							"value": "12",
+							"description": "Kelvin Murray (Student)"
 						},
 						{
 							"key": "iduser",
-							"value": "10"
+							"value": "10",
+							"description": "Nicholas Ross (Student)"
 						},
 						{
 							"key": "mark",
-							"value": "Pass"
+							"value": "Pass",
+							"description": "Pass (Can only be Pass or Fail)"
 						}
 					]
 				}
@@ -626,19 +769,23 @@
 					"variable": [
 						{
 							"key": "idcourse",
-							"value": "1"
+							"value": "1",
+							"description": "Data structures"
 						},
 						{
 							"key": "idstudent",
-							"value": "12"
+							"value": "12",
+							"description": "Kelvin Murray (Student)"
 						},
 						{
 							"key": "iduser",
-							"value": "4"
+							"value": "4",
+							"description": "Alisa Barnes (Teacher)"
 						},
 						{
 							"key": "mark",
-							"value": "Pa"
+							"value": "Pa",
+							"description": "Pa (Can only be Pass or Fail)"
 						}
 					]
 				}
