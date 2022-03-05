@@ -1,3 +1,5 @@
+DROP PROCEDURE IF EXISTS SP_AssignCourse;
+
 # Make a Course Available
 DELIMITER //
 CREATE PROCEDURE SP_AssignCourse(
@@ -9,6 +11,7 @@ BEGIN
     DECLARE RoleCheck_Admin_Var INT;
     DECLARE RoleCheck_Teacher_Var INT;
     DECLARE Assignment_Check_Var INT;
+    DECLARE ChangeCheck_Var INT;
     DECLARE Result INT;
 	
 	# Check if the user is an admin user
@@ -48,14 +51,21 @@ BEGIN
 			UPDATE mydb.courses
 			SET TeacherId = Provided_TeacherId
 			WHERE courseid = Provided_CourseId;
-			
-			# Return Success Message
-			SELECT 0
-			INTO Result;
+            
+			# Check Successful
+			SELECT ROW_COUNT()
+			INTO ChangeCheck_Var;
+                
+			IF ChangeCheck_Var = 1
+				THEN
+					# Return Success Message
+					SELECT 0
+					INTO Result;
+				END IF;
 			END IF;
+		END IF;
 	END IF;
-    END IF;
-    SELECT Result;
+SELECT Result;
 END //
 
 DELIMITER ;

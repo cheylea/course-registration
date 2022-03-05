@@ -1,3 +1,5 @@
+DROP PROCEDURE IF EXISTS SP_AvailableCourses;
+
 # Get list of available courses
 DELIMITER //
 CREATE PROCEDURE SP_AvailableCourses()

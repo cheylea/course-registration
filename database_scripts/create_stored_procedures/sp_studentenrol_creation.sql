@@ -1,3 +1,5 @@
+DROP PROCEDURE IF EXISTS SP_StudentEnrol;
+
 # Student Enrol in Course
 DELIMITER //
 CREATE PROCEDURE SP_StudentEnrol(
@@ -6,6 +8,7 @@ CREATE PROCEDURE SP_StudentEnrol(
 BEGIN
     DECLARE RoleCheck_Var INT;
     DECLARE EnrolmentCheck_Var INT;
+    DECLARE ChangeCheck_Var INT;
     DECLARE Result INT;
 	
 	# Check if the user is a student
@@ -25,20 +28,28 @@ BEGIN
             FROM mydb.enrolments
 			WHERE UserId = Provided_StudentId;
 			
-			IF EnrolmentCheck_Var IS NOT NULL THEN
-				SELECT 2
-				INTO result;
-			ELSE
-				# Add enrolment to the table
-				INSERT INTO mydb.enrolments (CourseId, UserId)
-				VALUES (Provided_CourseId, Provided_StudentId);
+			IF EnrolmentCheck_Var IS NOT NULL
+				THEN
+					SELECT 2
+					INTO result;
+				ELSE
+					# Add enrolment to the table
+					INSERT INTO mydb.enrolments (CourseId, UserId)
+					VALUES (Provided_CourseId, Provided_StudentId);
 				
-				# Return Success Message
-				SELECT 0
-				INTO result;
-			END IF;
-	END IF;
-    SELECT Result;
+					# Check Successful
+					SELECT ROW_COUNT()
+					INTO ChangeCheck_Var;
+                
+					IF ChangeCheck_Var = 1
+						THEN
+							# Return Success Message
+							SELECT 0
+							INTO result;
+				END IF;
+            END IF;
+		END IF;
+SELECT Result;
 END //
 
 DELIMITER ;
