@@ -83,7 +83,7 @@ node app.js
 Create a .env file in the `test_connection` folder and use the below template to replace with login details for your database server.
 
 ```bash
-PORT=5000
+PORT=5050
 USER=exampleuser
 PASSWORD=examplepassword
 DATABASE=mydb
