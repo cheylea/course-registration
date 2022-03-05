@@ -17,11 +17,11 @@ C:.
 │   └───create_stored_procedures
 ├───test
 │   ├───postman
-│ 	│	├───basic_requests.postman-collection.json
-│ 	│	├───data_reset_for_testing.sql
-│ 	│	└───full_testing.postman-collection.json
+│   │   ├───basic_requests.postman-collection.json
+│   │   ├───data_reset_for_testing.sql
+│   │   └───full_testing.postman-collection.json
 │   └───testing_database
-│ 		├───app.js
+│       ├───app.js
 │   	└───testingqueries.sql
 ├───postman
 │   ├───course-registration.postman_collection.json
