@@ -1,5 +1,5 @@
 # School Course Registration App
-This app is a server that can be run and used to interact with a connected database.
+This app is a server that can be run and used to interact with a connected database. 
 
 The functionality is as follows:
 * Activate the course in the system (admin only)
@@ -8,6 +8,9 @@ The functionality is as follows:
 * Get a list of available courses
 * Enrol a student in a course
 * Add the marks to the course enrolment record (teacher only)
+
+### Prerequisites
+It uses [Node.js](https://nodejs.org/en/download/), [Express](https://expressjs.com/en/starter/installing.html) and [MySQL](https://dev.mysql.com/downloads/) so ensure you have these installed before beginning.
 
 ## Directory
 The below directory shows some of the main files references in this README.
@@ -60,7 +63,7 @@ Server is listening at http://localhost:5050/
 ```
 
 ### API
-A tool such as Postman can be used to send calls to the server.
+A tool such as [Postman](https://www.postman.com/) can be used to send calls to the server.
 
 Included in this repository in the `test\postman` folder is a json file `basic_requests.postman-collection.json` that can be imported into the Postman application to use with this server to check each API is working.
 
