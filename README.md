@@ -62,7 +62,7 @@ Server is listening at http://localhost:5050/
 ### API
 A tool such as Postman can be used to send calls to the server.
 
-Included in this repository in the `test/postman` folder is a json file `basic_requests.postman-collection.json` that can be imported into the Postman application to use with this server to check each API is working.
+Included in this repository in the `test\postman` folder is a json file `basic_requests.postman-collection.json` that can be imported into the Postman application to use with this server to check each API is working.
 
 For full testing, within the folder there is also a json file `full_testing.postman-collection.json`. See Testing the Server section for more information.
 
@@ -75,7 +75,7 @@ Once the database is installed, open the scripts in the folder `database_scripts
 There is a provided folder that can test the connection to the server and ensure you can receive data as well as test the individual stored procedures.
 
 ### Testing Queries
-In the `test` file there is a sql file containing suggested test queries using the provided database. These can be run in the DBMS directly or used within the `app.js` file to test that the connection to the database server is working.
+In the `test\database` file there is a sql file containing suggested test queries using the provided database. These can be run in the DBMS directly or used within the `app.js` file to test that the connection to the database server is working.
 
 ### Running app.js
 The SQL Query can be set within this file:
@@ -110,8 +110,8 @@ HOST=localhost
 Before beginning testing, please ensure the following:
 
 * Check your MySQL server is running
-* There is a `data_reset_for_testing.sql` found in the `test/postman`. Run this file on the database before beginning.
-* Ensure `full_testing.postman-collection.json` has been imported into the POSTMAN application.
+* Ensure `full_testing.postman-collection.json` has been imported into the POSTMAN application for full testing or `basic_requests.postman-collection.json` for quick testing.
+* There is a `data_reset_for_testing.sql` found in the `test\postman`. Run this file on the database before beginning full testing.
 * You have created a .env file as instructed previously, and `PORT` is set to `5050`
 * Run the `server.js` file to open the server.
 
