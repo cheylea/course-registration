@@ -49,11 +49,11 @@ active if they are an admin user. This directly
 handles issues such as confirming role and 
 stopping if the course has already been activated.
 */
-app.put('/activatecourse/:namecourse/:nameuser', function (request, response) {
+app.put('/activatecourse/:idcourse/:iduser', function (request, response) {
     // Log the request in the console
     console.log(request)
     // Make connection to database and call the stored procedure and attempt to update the row
-    connection.query(`CALL SP_ActivateCourse(?,?);`, [request.params.namecourse, request.params.nameuser], (error, result)=>{
+    connection.query(`CALL SP_ActivateCourse(?,?);`, [request.params.idcourse, request.params.iduser], (error, result)=>{
         // Handle SQL errors
         if (error) throw error;
         // Database returns number to indicate what was completed
@@ -80,11 +80,11 @@ inactive if they are an admin user. This directly
 handles issues such as confirming role and 
 stopping if the course has already been deactivated.
 */
-app.put('/deactivatecourse/:namecourse/:nameuser', function (request, response) {
+app.put('/deactivatecourse/:idcourse/:iduser', function (request, response) {
     // Log the request in the console
     console.log(request)
     // Make connection to database and call the stored procedure and attempt to update the row
-    connection.query(`CALL SP_DeactivateCourse(?,?);`, [request.params.namecourse, request.params.nameuser], (error, result)=>{
+    connection.query(`CALL SP_DeactivateCourse(?,?);`, [request.params.idcourse, request.params.iduser], (error, result)=>{
         // Handle SQL errors
         if (error) throw error;
         // Database returns number to indicate what was completed
@@ -110,14 +110,14 @@ This allows the user to assign a teacher to
 a course if they are an admin user. This directly
 handles issues such as confirming role, stopping
 if the course has already been assigned to that
-specific teacher and checking the teacher name
+specific teacher and checking the teacher
 provided is valid.
 */
-app.put('/assigncourse/:namecourse/:nameuser/:nameteacher', function (request, response) {
+app.put('/assigncourse/:idcourse/:iduser/:idteacher', function (request, response) {
     // Log the request in the console
     console.log(request)
     // Make connection to database and call the stored procedure and attempt to update the row
-    connection.query(`CALL SP_AssignCourse(?,?,?);`, [request.params.namecourse, request.params.nameuser, request.params.nameteacher], (error, result)=>{
+    connection.query(`CALL SP_AssignCourse(?,?,?);`, [request.params.idcourse, request.params.iduser, request.params.idteacher], (error, result)=>{
         // Handle SQL errors
         if (error) throw error;
         // Database returns number to indicate what was completed
@@ -164,13 +164,13 @@ app.get('/availablecourses', function (request, response) {
 This allows any user to enrol a student.
 This directly handles issues such as a student
 already being enrolled on a course or an invalid
-student name being provided
+student being provided
 */
-app.post('/studentenrol/:namecourse/:namestudent', function (request, response) {
+app.post('/studentenrol/:idcourse/:idstudent', function (request, response) {
     // Log the request in the console
     console.log(request)
     // Make connection to database and call the stored procedure and attempt to insert new row
-    connection.query(`CALL SP_StudentEnrol(?,?);`, [request.params.namecourse, request.params.namestudent], (error, result)=>{
+    connection.query(`CALL SP_StudentEnrol(?,?);`, [request.params.idcourse, request.params.idstudent], (error, result)=>{
         // Handle SQL errors
         if (error) throw error;
         // Database returns number to indicate what was completed
@@ -182,7 +182,7 @@ app.post('/studentenrol/:namecourse/:namestudent', function (request, response) 
         } else if (out === 2) {
             message = "Duplicate Action: Student is already enrolled. Please contact support team for assistance.";
         } else if (out === 3) {
-            message = "Invalid Parameter: Student name provided is not valid. Please provide a valid student name.";
+            message = "Invalid Parameter: Student provided is not valid. Please provide a valid student.";
         } else {
             message = "Unknown Error";
         };
@@ -195,14 +195,14 @@ app.post('/studentenrol/:namecourse/:namestudent', function (request, response) 
 This allows the user to add grades to the course
 if the user is a teacher.
 This directly handles issues such as incorrect 
-permissions, an invalid student name, the enrolment 
+permissions, an invalid student, the enrolment 
 not existing and checks the mark is either a pass or fail.
 */
-app.put('/teacheraddmarks/:namecourse/:namestudent/:nameuser/:mark', function (request, response) {
+app.put('/teacheraddmarks/:idcourse/:idstudent/:iduser/:mark', function (request, response) {
     // Log the request in the console
     console.log(request)
     // Make connection to database and call the stored procedure and attempt to update the row
-    connection.query(`CALL SP_TeacherAddMarks(?,?,?,?);`, [request.params.namecourse, request.params.namestudent, request.params.nameuser, request.params.mark], (error, result)=>{
+    connection.query(`CALL SP_TeacherAddMarks(?,?,?,?);`, [request.params.idcourse, request.params.idstudent, request.params.iduser, request.params.mark], (error, result)=>{
         // Handle SQL errors
         if (error) throw error;
         // Database returns number to indicate what was completed
