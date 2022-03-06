@@ -1,4 +1,4 @@
-# School Course Registration App
+# College Course Registration App
 This app is a server that can be run and used to interact with a connected database. 
 
 The functionality is as follows:
@@ -9,7 +9,7 @@ The functionality is as follows:
 * Enrol a student in a course
 * Add the marks to the course enrolment record (teacher only)
 
-### Prerequisites
+## Prerequisites
 It uses [Node.js](https://nodejs.org/en/download/), [Express](https://expressjs.com/en/starter/installing.html) and [MySQL](https://dev.mysql.com/downloads/) so ensure you have these installed before beginning.
 
 ## Directory
