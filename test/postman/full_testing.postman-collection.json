@@ -535,7 +535,40 @@
 			"response": []
 		},
 		{
-			"name": "Student Enrollment - Already Enrolled",
+			"name": "Student Enrollment - Already Enrolled Same Course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/studentenrol/:idcourse/:idstudent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"studentenrol",
+						":idcourse",
+						":idstudent"
+					],
+					"variable": [
+						{
+							"key": "idcourse",
+							"value": "2",
+							"description": "Databases"
+						},
+						{
+							"key": "idstudent",
+							"value": "10",
+							"description": "Nicholas Ross (Student)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student Enrollment - Already Enrolled Any Course",
 			"request": {
 				"method": "POST",
 				"header": [],
