@@ -46,7 +46,7 @@ app.get("/ping", (request, response) => {
 
 /* Routing Requests
 These are the main functionality APIs
-that can be coneected to and interact
+that can be connected to and interact
 with stored procedures on the database.
 */
 
