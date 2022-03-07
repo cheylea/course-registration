@@ -28,6 +28,13 @@ var server = app.listen(process.env.PORT, function () {
     console.log(`Server is listening at http://${process.env.HOST}:${process.env.PORT}/`)
 });
 
+/* BoilerPlate Code
+Title: How to Create Your Own Secure Node.js REST API Boilerplate
+Author: A S Pranesh
+Date: 01/23/2021
+Availability: https://flawsomedev.com/posts/secure-nodejs-restapi-boilerplate/
+*/
+
 //Ping endpoint to test status
 app.get("/ping", (request, response) => {  
     // If able to access the server return healthy
