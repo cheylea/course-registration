@@ -9,6 +9,10 @@ The functionality is as follows:
 * Enrol a student in a course
 * Add the marks to the course enrolment record (teacher only)
 
+Project Team Members
+- Cheylea Hopkinson
+- Devin van Rooyen
+
 ## Prerequisites
 It uses [Node.js](https://nodejs.org/en/download/), [Express](https://expressjs.com/en/starter/installing.html) and [MySQL](https://dev.mysql.com/downloads/) so ensure you have these installed before beginning.
 
